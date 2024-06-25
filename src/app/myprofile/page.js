@@ -1,7 +1,3 @@
-"use client"
-import React, {useState, useRef} from 'react';
-import JoditEditor from "jodit-pro-react";
-// https://xdsoft.net/jodit/start.html
 
 export default function page() {
   return (
