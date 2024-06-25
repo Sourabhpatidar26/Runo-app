@@ -1,7 +1,4 @@
 "use client";
-import Image from "next/image";
-import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
 import SimpleImageSlider from "react-simple-image-slider";
 import bannerImg1 from "../../public/images/bannerImg1.png";
 import bannerImg2 from "../../public/images/bannerImg2.png";
@@ -10,7 +7,6 @@ import dynamic from 'next/dynamic';
 import { useEffect } from "react";
 import Aos from "aos";
 import 'aos/dist/aos.css';
-import Modal from "./components/Model";
 
 const BlogCard = dynamic(() => import('./components/Blog/blogCard'));
 
