@@ -1,6 +1,6 @@
 "use client"
 import { useRef, useState } from "react";
-import JoditEditor from "jodit-pro-react";
+// import JoditEditor from "jodit-pro-react";
 
 export default function page() {
   const editor = useRef(null);
@@ -26,7 +26,7 @@ export default function page() {
             {" "}
             Let's create a blog
           </div>
-          <JoditEditor
+          {/* <JoditEditor
             ref={editor}
             value={content}
             config={config}
@@ -35,7 +35,7 @@ export default function page() {
             onChange={(newContent) => {
               console.log("content", newContent);
             }}
-          />
+          /> */}
         </div>
       </section>
     </>

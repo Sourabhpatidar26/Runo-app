@@ -6,11 +6,13 @@ import SimpleImageSlider from "react-simple-image-slider";
 import bannerImg1 from "../../public/images/bannerImg1.png";
 import bannerImg2 from "../../public/images/bannerImg2.png";
 import hpBanner from "../../public/images/hpBanner.png";
-import BlogCard from "./components/Blog/blogCard";
+import dynamic from 'next/dynamic';
 import { useEffect } from "react";
 import Aos from "aos";
 import 'aos/dist/aos.css';
 import Modal from "./components/Model";
+
+const BlogCard = dynamic(() => import('./components/Blog/blogCard'));
 
 export default function Home() {
   const images = [
@@ -178,8 +180,8 @@ export default function Home() {
               <div className="">
                 <div className=" mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-4 sm:justify-items-center">
                   {blogsData && blogsData.length > 0 ? (
-                    blogsData.map((blog) => (
-                      <div data-aos="fade-up">
+                    blogsData.map((blog,index) => (
+                      <div data-aos="fade-up" key={index}>
                         <BlogCard blog={blog} type={"blogs"}/>
                       </div>
                     ))
@@ -227,7 +229,7 @@ export default function Home() {
                     blogsData.map((blog,index) => {
                     if(index >= 3) return false
                       return(
-                      <div data-aos="fade-up">
+                      <div data-aos="fade-up" key={index}>
                         <BlogCard blog={blog} type={"editor"}/>
                       </div>
                     )
