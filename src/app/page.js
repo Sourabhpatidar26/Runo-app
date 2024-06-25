@@ -1,113 +1,249 @@
+"use client";
 import Image from "next/image";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+import SimpleImageSlider from "react-simple-image-slider";
+import bannerImg1 from "../../public/images/bannerImg1.png";
+import bannerImg2 from "../../public/images/bannerImg2.png";
+import hpBanner from "../../public/images/hpBanner.png";
+import BlogCard from "./components/Blog/blogCard";
+import { useEffect } from "react";
+import Aos from "aos";
+import 'aos/dist/aos.css';
+import Modal from "./components/Model";
 
 export default function Home() {
+  const images = [
+    {
+      url: bannerImg1.src,
+    },
+    {
+      url: bannerImg2.src,
+    },
+    {
+      url: "https://images.unsplash.com/photo-1707343848873-d6a834b5f9b9?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    },
+  ];
+  const blogsData = [
+    {
+      id: 1,
+      blogHeading: "Introduction to JSON Blogging",
+      blogHandle: "json-blogging",
+      image: "https://source.unsplash.com/featured/?blogging",
+      description:
+        "Exploring the wonders of JSON-based blogging and its applications.",
+      createdDate: "2024-03-07T12:00:00Z",
+      updatedDate: "2024-03-07T14:30:00Z",
+      tags: ["technology", "branding"],
+    },
+    {
+      id: 2,
+      blogHeading: "Mastering Python for Web Development",
+      blogHandle: "python-web-dev",
+      image: "https://source.unsplash.com/featured/?python,web",
+      description:
+        "A comprehensive guide to becoming proficient in Python for web development.",
+      createdDate: "2024-03-08T10:30:00Z",
+      updatedDate: "2024-03-08T15:45:00Z",
+      tags: ["technology"],
+    },
+    {
+      id: 3,
+      blogHeading: "The Art of Mobile Photography",
+      blogHandle: "mobile-photography",
+      image: "https://source.unsplash.com/featured/?mobile,photography",
+      description:
+        "Unlocking the secrets to capturing stunning photos with your mobile device.",
+      createdDate: "2024-03-09T08:45:00Z",
+      updatedDate: "2024-03-09T12:20:00Z",
+      tags: ["adventure", "fashion"],
+    },
+    {
+      id: 4,
+      blogHeading: "Exploring Machine Learning Algorithms",
+      blogHandle: "ml-algorithms",
+      image: "https://source.unsplash.com/featured/?machine-learning",
+      description:
+        "Dive into the world of machine learning and understand popular algorithms.",
+      createdDate: "2024-03-10T14:00:00Z",
+      updatedDate: "2024-03-10T16:45:00Z",
+      tags: ["technology"],
+    },
+    {
+      id: 5,
+      blogHeading: "Healthy Living: A Holistic Approach",
+      blogHandle: "healthy-living",
+      image: "https://source.unsplash.com/featured/?health",
+      description:
+        "Tips and tricks for maintaining a healthy lifestyle and overall well-being.",
+      createdDate: "2024-03-11T09:30:00Z",
+      updatedDate: "2024-03-11T11:15:00Z",
+      tags: ["adventure"],
+    },
+    {
+      id: 6,
+      blogHeading: "JavaScript Frameworks Comparison",
+      blogHandle: "js-frameworks",
+      image: "https://source.unsplash.com/featured/?javascript,frameworks",
+      description:
+        "An in-depth analysis of popular JavaScript frameworks and their strengths.",
+      createdDate: "2024-03-12T12:15:00Z",
+      updatedDate: "2024-03-12T14:40:00Z",
+      tags: ["technology"],
+    },
+    {
+      id: 7,
+      blogHeading: "Traveling on a Budget: Tips and Tricks",
+      blogHandle: "budget-travel",
+      image: "https://source.unsplash.com/featured/?travel,budget",
+      description:
+        "Explore the world without breaking the bank with these budget-friendly travel tips.",
+      createdDate: "2024-03-13T11:00:00Z",
+      updatedDate: "2024-03-13T13:25:00Z",
+      tags: ["travel", "adventure"],
+    },
+    {
+      id: 8,
+      blogHeading: "The Evolution of Virtual Reality",
+      blogHandle: "virtual-reality",
+      image: "https://source.unsplash.com/featured/?virtual-reality",
+      description:
+        "Tracing the history and advancements in virtual reality technology.",
+      createdDate: "2024-03-14T15:30:00Z",
+      updatedDate: "2024-03-14T18:00:00Z",
+      tags: ["technology"],
+    },
+  ];
+
+  const TagD = ({ text }) => (
+    <div className="slide-tag p-3 bg-slate-500 w-fit rounded-xl mix-blend-hard-light text-xs mx-auto">
+      {text}
+    </div>
+  );
+
+  useEffect(()=>{
+    Aos.init({once: true});
+  },[])
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.js</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
+    <div className="min-h-screen relative max-sm:w-[100%]">
+      <section>
+        <div>
+          <div className="home-slider relative">
+            <SimpleImageSlider
+              width={"100%"}
+              height={"100svh"}
+              images={images}
+              showBullets={true}
+              // showNavs={true}
+              autoPlay
+              loop
+              autoPlayDelay={3}
             />
-          </a>
+            <div className="slide-text-section absolute bottom-20 text-white left-5 w-1/2">
+              <div className="slide-tag p-3 bg-slate-500 w-fit rounded-xl mix-blend-hard-light text-xs">
+                ADVENTURE
+              </div>
+              <div className="slide-heading mt-3 text-5xl">
+                Richird Norton photorealistic rendering as real photos
+              </div>
+              <div className="slide-description mt-3">
+                <div className="grid grid-rows-3 grid-flow-col gap-4">
+                  <div className="row-span-3">08.08.2021 ------</div>
+                  <div className="row-span-2 col-span-2">
+                    Progressively incentivize cooperative systems through
+                    technically sound functionalities. The credibly productivate
+                    seamless data.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
+      </section>
+      <section className="mt-20">
+        <div className="container mx-auto px-5">
+          <div className="text-3xl font-bold">Popular topics</div>
+          <div className="blog-filters mt-4">
+            <div className="flex flex-row gap-4 text-center">
+              <div className="">All</div>
+              <div className="">Adventure</div>
+              <div className="">Travel</div>
+              <div className="">Technology</div>
+              <div className="">Branding</div>
+            </div>
+          </div>
+          <div className="blogs">
+            <div className="bg-white mt-12 mb-12">
+              <div className="">
+                <div className=" mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-4 sm:justify-items-center">
+                  {blogsData && blogsData.length > 0 ? (
+                    blogsData.map((blog) => (
+                      <div data-aos="fade-up">
+                        <BlogCard blog={blog} type={"blogs"}/>
+                      </div>
+                    ))
+                  ) : (
+                    <h2>No blogs found</h2>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="mt-16">
+        <div
+          style={{ backgroundImage: `url('${hpBanner.src}')` }}
+          className="hp-middle-banner bg-no-repeat bg-cover"
         >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800 hover:dark:bg-opacity-30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50 text-balance`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+          <div
+            className={` min-h-screen text-white flex justify-center items-center text-center`}
+          >
+            <div className="w-1/2">
+              <TagD text={"Fashion"} />
+              <div className="slide-heading mt-3 text-5xl">
+                Richird Norton photorealistic rendering as real photos
+              </div>
+              <p className="mt-5 mb-5">
+                Progressively incentivize cooperative systems through
+                technically sound functionalities. The credibly productivate
+                seamless data.
+              </p>
+              <p className="border-b mt-5 mb-5"></p>
+              <div>08.08.2021</div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="mt-20">
+        <div className="container mx-auto px-5">
+          <div className="text-3xl font-bold">Editor's pick</div>
+          <div className="blogs">
+            <div className="bg-white mt-12 mb-12">
+              <div className="editors-pick">
+                <div className=" mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+                  {blogsData && blogsData.length > 0 ? (
+                    blogsData.map((blog,index) => {
+                    if(index >= 3) return false
+                      return(
+                      <div data-aos="fade-up">
+                        <BlogCard blog={blog} type={"editor"}/>
+                      </div>
+                    )
+                  })
+                  ) : (
+                    <h2>No blogs found</h2>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section>
+        {/* <Modal /> */}
+      </section>
+    </div>
   );
 }
