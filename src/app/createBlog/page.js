@@ -25,20 +25,37 @@ export default function page() {
     <>
       <section>
         <div className="p-6 mb-20 pt-24">
-          <div className="text-xl h-[100%] font-bold mt-2 ml-2 text-black mb-4">
-            {" "}
+        <div className="text-4xl font-bold text-center mb-10 mt-10">
             Let's create a blog
           </div>
+          <div className="mb-5">
+          <form  className="grid grid-cols-1 mx-auto">
+            <div>
+                <label className="mr-4">Blog Title</label>
+                    <input type="text" name="blogTitle" placeholder="Enter your blog title"  className="w-[20%] p-2 border-b-2 mb-2 focus:outline-none focus:border-blue-500"/>
+            </div>
+           </form>
+          </div>
+          <div className="mb-5">
           <JoditEditor
-            ref={editor}
+          
+          forwardRef={editor}
             value={content}
             config={config}
             tabIndex={10} // tabIndex of textarea
             onBlur={(newContent) => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
-            onChange={(newContent) => {
-              console.log("content", newContent);
-            }}
+            // onChange={(newContent) => setContent(newContent)}
           />
+          </div>
+          <div className="text-4xl font-bold text-center mb-10 mt-10">
+            Blog preview
+          </div>
+          <div className="mt-5 mb-5">
+            {!content && <p>Please create something</p>}
+              <p dangerouslySetInnerHTML={{ __html: content }}>
+
+              </p>
+          </div>
         </div>
       </section>
     </>

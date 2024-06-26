@@ -1,3 +1,4 @@
+import { berkshireSwash, cinzel, dancingScript } from "@/app/utils/fonts";
 import { FaFacebook,FaInstagram,FaPinterest,FaTwitter,FaYoutube } from "react-icons/fa";
 export default function Footer() {
   return (
@@ -38,7 +39,7 @@ export default function Footer() {
                 </div>
             </div>
         </div>
-        <div className="bg-[#343A40]">
+        <div className={`bg-[#343A40] ${cinzel.className}`}>
             <div className="flex justify-between p-4 text-white">
             <div className="font-bold text-xl">2021 | RUNO Publisher Studio</div>
             <div className="font-bold text-xl">Subscribe Now</div>

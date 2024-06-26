@@ -2,6 +2,7 @@
 import Link from "next/link";
 import "./Header.css";
 import { useEffect, useState } from "react";
+import { cinzel } from "@/app/utils/fonts";
 
 export default function Header() {
   const [scrolltopdata, setscrolltopdata] = useState("");
@@ -25,7 +26,7 @@ export default function Header() {
     <>
       <div className={`header-box fixed z-30 ${scrolltopdata} max-sm:h[100vh]`}>
         <div className="grid grid-cols-2 gap-4 p-3 mb-2">
-          <div className="ml-8 text-2xl font-bold uppercase ">Runo</div>
+          <div className={`ml-8 text-3xl font-bold uppercase ${cinzel.className}`}>Runo</div>
           <div className="max-lg:block hidden relative">
             <div className="absolute right-3">
               <div
